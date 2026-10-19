@@ -326,7 +326,8 @@ function fitOnePage(): PageFit {
   const trim = overLines > 0 ? [...tails].sort((a, b) => a.tail - b.tail).slice(0, overLines).filter((t) => t.tail <= 25) : [];
   el.setAttribute("style", keep);
   const ok = fill <= 1;
-  el.toggleAttribute("data-fit", ok); // 放得下才撑满整页；放不下就按内容自然分页，不截断
+  // 快写满（≥9 成）才撑满整页、空白均分到各块之间；内容少时照常从上往下排，不然块和块之间会空出一大截。放不下就按内容自然分页，不截断
+  el.toggleAttribute("data-fit", ok && fill >= SHORT_BELOW);
   return { status: !ok ? "over" : fill < SHORT_BELOW ? "short" : "full", fill: Math.round(fill * 100), orphans, trim };
 }
 
@@ -1474,8 +1475,8 @@ function A4Preview({ resume, profile, fit, edit }: { resume: Resume; profile: Pr
         className={`absolute left-0 top-0 origin-top-left bg-white shadow-lg ring-1 ${fit.status === "over" ? "ring-red-300" : "ring-gray-200"}`}
         style={{ width: PAGE_W, height: PAGE_H, padding: `${PAGE_MARGIN.y}mm ${PAGE_MARGIN.x}mm`, transform: `scale(${scale})` }}
       >
-        {/* 放得下就和打印一样撑满整页（空白均分到各块之间）；超页时照常往下排，纸张底边用红线标出 */}
-        <ResumeSheet resume={resume} profile={profile} edit={edit} className={fit.status === "over" ? "" : "flex h-full flex-col justify-between"} />
+        {/* 快写满时和打印一样撑满整页（空白均分到各块之间）；内容少或超页时照常往下排，超页时纸张底边用红线标出 */}
+        <ResumeSheet resume={resume} profile={profile} edit={edit} className={fit.status === "full" ? "flex h-full flex-col justify-between" : ""} />
         {fit.status === "over" && <div className="pointer-events-none absolute inset-x-0 border-t-2 border-dashed border-red-400" style={{ top: PAGE_H - PAGE_MARGIN.y * MM }} />}
       </div>
     </div>

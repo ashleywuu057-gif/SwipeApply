@@ -4,6 +4,12 @@
 
 > **English** — SwipeApply is a local-first job-hunting workbench for campus recruiting in China. Swipe through job cards; AI matches roles to your experience, tailors a one-page A4 resume to each JD (every line traceable to your own materials, no invented numbers), and a browser extension autofills application forms (Feishu Hire, Moka, Beisen). Everything runs on your own machine — no server, your data stays in `data/`. Bring your own LLM keys (DeepSeek / Qwen or any OpenAI-compatible API).
 
+<p align="center">
+  <img src="docs/screenshots/feed.png" width="49%" alt="岗位流：像刷卡片一样看岗位，AI 按 JD 给出匹配分、匹配点和差距" />
+  <img src="docs/screenshots/resume.png" width="40%" alt="定制简历：固定一页 A4，直接在页面上编辑，和导出的 PDF 一模一样" />
+</p>
+<p align="center"><sub>左：岗位流，AI 按 JD 对照你的经历给出匹配分和差距　右：定制简历，直接在 A4 页面上改，和导出的 PDF 一模一样（截图用的是虚构的示例数据）</sub></p>
+
 **能做什么**
 
 - **刷岗位**：右滑投递、左滑跳过，AI 从你的选择里学偏好（左滑会问为什么，按「整车 / 硬件」这样的细分方向学，不会一棍子打死整个职能）
