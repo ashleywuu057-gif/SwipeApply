@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="applykit-feishu-fixture" content="true">
+  <title>投递简历 - 示例汽车内推</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    body { color: #1f2329; }
+    .resumeEditForm-wrapper { max-width: 1100px; margin: 0 auto; }
+    .resumeEditForm-header { font-size: 24px; font-weight: 700; margin: 18px 0; }
+    .createFormSection__fixture { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid #e5e6eb; }
+    .createFormSection-title { font-size: 20px; font-weight: 700; }
+    .createFormSection-description { color: #8f959e; }
+    .resumeEditForm-item { border: 1px solid #d9dce1; padding: 16px; margin-bottom: 12px; }
+    .atsx-row-flex { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 14px; }
+    .atsx-form-item-label { font-weight: 600; margin-bottom: 5px; }
+    .atsx-form-item-required::before { content: '*'; color: #d33; margin-right: 3px; }
+    .atsx-input, textarea, .atsx-select-selection, .atsx-date-picker-period-month { box-sizing: border-box; width: 100%; min-height: 38px; border: 1px solid #aeb5bf; border-radius: 4px; padding: 8px; background: #fff; }
+    textarea { min-height: 86px; }
+    .atsx-select { position: relative; }
+    .atsx-select-selection { cursor: pointer; }
+    .atsx-select-selection__placeholder { color: #a8abb2; }
+    .atsx-select-search__field { min-height: 24px; border: 0; width: 100%; }
+    .atsx-select-dropdown, .atsx-date-picker-dropdown { position: fixed; z-index: 2000; left: 35%; top: 20%; min-width: 320px; max-height: 380px; overflow: auto; background: white; border: 1px solid #8f98a5; padding: 8px; }
+    [role="option"], [data-cy-value], .atsx-date-picker-period-month-panel-list-item, .atsx-date-picker-panel-body-cell-content { cursor: pointer; padding: 7px 10px; }
+    .atsx-tree { display: grid; gap: 4px; }
+    .atsx-date-picker-period-month { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .atsx-date-picker-period-month-label { min-width: 88px; }
+    .atsx-date-picker-period-hidden-input { width: 0; height: 0; padding: 0; border: 0; position: absolute; }
+    .atsx-date-picker-period-month-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .atsx-date-picker-period-month-panel-list { max-height: 300px; overflow: auto; }
+    .atsx-date-picker-panel-body-row { display: flex; }
+    .formOperate-addBtn, .createFormSection-addBtn { color: #245bdb; cursor: pointer; width: fit-content; padding: 7px 0; }
+    .atsx-checkbox-wrapper { display: inline-flex; gap: 6px; align-items: center; }
+  </style>
+</head>
+<body>
+  <main class="resumeEditForm-wrapper">
+    <div class="resumeEditForm-header">校招-智能座舱软件开发工程师</div>
+    <form class="atsx-form atsx-form-horizontal" id="feishu-form"></form>
+  </main>
+  <script src="feishu-style.js"></script>
+</body>
+</html>

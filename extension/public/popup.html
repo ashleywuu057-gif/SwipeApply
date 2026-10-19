@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>SwipeApply · 投简助手</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="popup">
+  <header class="popup-head">
+    <h1>投简助手</h1>
+    <p class="muted">SwipeApply · 基于 ApplyKit</p>
+    <p class="muted">本地填写，不会自动提交申请</p>
+  </header>
+
+  <section class="popup-block">
+    <div class="row"><span class="row-label">当前履历</span><span id="current-profile">加载中…</span></div>
+    <div class="row"><span class="row-label">当前网站</span><span id="current-site">加载中…</span></div>
+    <button type="button" id="btn-sync-jobprep" class="ghost">从SwipeApply同步履历</button>
+  </section>
+
+  <section class="popup-actions">
+    <button type="button" id="btn-scan" class="ghost">扫描页面</button>
+    <button type="button" id="btn-fill" class="primary">一键填写</button>
+    <button type="button" id="btn-stop" class="ghost" disabled>停止</button>
+  </section>
+
+  <p id="status-line" class="status" role="status">准备就绪</p>
+  <section id="summary" class="popup-block"></section>
+
+  <footer class="popup-foot">
+    <button type="button" id="link-profiles" class="link">履历管理</button>
+    <button type="button" id="link-applications" class="link">投递记录</button>
+  </footer>
+
+  <div id="toast-host" class="toast-host"></div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

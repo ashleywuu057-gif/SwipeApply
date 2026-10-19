@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>投简助手 · 工作台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="app">
+  <header class="app-head">
+    <h1>投简助手 · 工作台</h1>
+    <nav class="tabs" aria-label="工作台导航">
+      <button type="button" id="tab-profiles" class="tab">履历</button>
+      <button type="button" id="tab-editor" class="tab">编辑器</button>
+      <button type="button" id="tab-review" class="tab">填写结果</button>
+      <button type="button" id="tab-applications" class="tab">投递记录</button>
+      <button type="button" id="tab-rules" class="tab">对应规则</button>
+      <button type="button" id="tab-backup" class="tab">备份</button>
+    </nav>
+  </header>
+
+  <p id="data-warning" class="warn banner" hidden></p>
+
+  <main class="app-main">
+    <section id="view-profiles" class="view"></section>
+    <section id="view-editor" class="view" hidden></section>
+    <section id="view-review" class="view" hidden></section>
+    <section id="view-applications" class="view" hidden></section>
+    <section id="view-rules" class="view" hidden></section>
+    <section id="view-backup" class="view" hidden></section>
+  </main>
+
+  <div id="toast-host" class="toast-host"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

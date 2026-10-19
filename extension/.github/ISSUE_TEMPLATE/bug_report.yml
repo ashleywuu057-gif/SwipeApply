@@ -1,0 +1,60 @@
+name: Bug report
+description: 报告可复现的扫描、填写、校验或界面问题
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先删除真实姓名、电话、邮箱、学号、证件信息、Cookie、令牌和带身份参数的链接。安全问题请按 SECURITY.md 私下报告。
+
+  - type: input
+    id: version
+    attributes:
+      label: ApplyKit 版本或提交
+      placeholder: 例如 0.1.0 或提交哈希
+    validations:
+      required: true
+
+  - type: dropdown
+    id: adapter
+    attributes:
+      label: 页面类型
+      options:
+        - 通用或未知网站
+        - Moka
+        - 北森 Phoenix
+        - 飞书招聘 ATSX
+        - 本地演示页面
+    validations:
+      required: true
+
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 实际行为与期望行为
+      description: 说明哪个字段或步骤出现问题，以及你期望看到什么。
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 最小复现步骤
+      description: 使用虚构数据和脱敏后的页面结构；不要上传真实履历或账号信息。
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境
+      placeholder: Chrome 版本、操作系统、页面系统或适配器
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私确认
+      options:
+        - label: 我已确认内容中不含真实个人信息、Cookie、令牌或账号凭据。
+          required: true

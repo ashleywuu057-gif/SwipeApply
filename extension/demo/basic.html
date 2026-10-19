@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="applykit-demo-page" content="basic">
+<title>AI 应用开发实习生（演示） - 星帆科技（演示）</title>
+<link rel="stylesheet" href="demo.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "AI 应用开发实习生（演示）",
+  "identifier": { "@type": "PropertyValue", "name": "demoJobId", "value": "demo-basic-001" },
+  "hiringOrganization": { "@type": "Organization", "name": "星帆科技（演示）" },
+  "jobLocation": {
+    "@type": "Place",
+    "address": { "@type": "PostalAddress", "addressLocality": "杭州", "addressCountry": "CN" }
+  },
+  "employmentType": "INTERN",
+  "description": "这是本地演示岗位，公司与岗位均为虚构，不接受任何真实申请。"
+}
+</script>
+</head>
+<body>
+<div class="demo-banner">
+  本地演示 · 数据不会提交给招聘公司
+  <small>页面与岗位均为虚构，仅用于测试投简助手。表单内容只保存在这一个浏览器标签页里。</small>
+</div>
+
+<main>
+  <h1>基础填写演示：AI 应用开发实习生（演示）</h1>
+  <p class="muted">公司：星帆科技（演示） · 地点：杭州 · 岗位编号：demo-basic-001</p>
+
+  <div class="toolbar">
+    <button type="button" id="demo-reset">清空表单</button>
+    <label class="subfield"><input type="checkbox" id="demo-async-invalid"> 模拟邮箱异步校验失败</label>
+  </div>
+
+  <form id="apply-form" autocomplete="off">
+    <fieldset>
+      <legend>基本信息</legend>
+
+      <div class="field">
+        <label for="fullname">姓名</label>
+        <input type="text" id="fullname" name="fullname" required>
+      </div>
+
+      <div class="field">
+        <label for="englishname">英文名</label>
+        <input type="text" id="englishname" name="englishname" value="Example Lin">
+      </div>
+
+      <div class="field">
+        <label for="email">邮箱</label>
+        <input type="email" id="email" name="email" aria-describedby="email-error" required>
+        <span class="error-text" id="email-error"></span>
+      </div>
+
+      <div class="field">
+        <label for="phone">手机号</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+
+      <div class="field">
+        <label for="city">现居城市</label>
+        <input type="text" id="city" name="city" value="上海">
+      </div>
+
+      <div class="field">
+        <label for="homepage">个人主页</label>
+        <input type="url" id="homepage" name="homepage">
+      </div>
+
+      <div class="field">
+        <label for="github">GitHub</label>
+        <input type="text" id="github" name="github">
+      </div>
+
+      <div class="field">
+        <label for="birthdate">出生日期</label>
+        <input type="date" id="birthdate" name="birthdate">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>求职意向</legend>
+
+      <div class="field">
+        <label for="availability">到岗时间</label>
+        <input type="text" id="availability" name="availability" maxlength="60">
+      </div>
+
+      <div class="field">
+        <label for="months">可实习月数</label>
+        <select id="months" name="months">
+          <option value="">请选择</option>
+          <option value="3个月">3个月</option>
+          <option value="6个月">6个月</option>
+          <option value="12个月">12个月</option>
+        </select>
+      </div>
+
+      <div class="field" role="group" aria-labelledby="weekdays-label">
+        <span class="group-label" id="weekdays-label">每周可实习天数</span>
+        <label class="subfield"><input type="radio" name="weekdays" value="3天"> 3天</label>
+        <label class="subfield"><input type="radio" name="weekdays" value="4天"> 4天</label>
+        <label class="subfield"><input type="radio" name="weekdays" value="5天"> 5天</label>
+      </div>
+
+      <div class="field">
+        <label class="subfield"><input type="checkbox" id="relocation" name="relocation"> 是否接受异地</label>
+      </div>
+
+      <div class="field">
+        <label for="target-role">意向岗位</label>
+        <input type="text" id="target-role" name="target-role">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>其他材料</legend>
+
+      <div class="field">
+        <label for="intro">自我介绍</label>
+        <textarea id="intro" name="intro" rows="4" maxlength="2000"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="subfield"><input type="checkbox" id="mail-consent" name="mail-consent"> 我同意接收职位推荐邮件</label>
+      </div>
+    </fieldset>
+
+    <button type="button" id="demo-submit" class="primary">提交演示申请</button>
+    <div class="success-box" id="demo-success" hidden></div>
+  </form>
+</main>
+
+<aside class="state-panel">
+  <h2>页面实际接收到的数据</h2>
+  <p class="muted">来自本页自己的 input / change 监听器</p>
+  <div id="received-state"></div>
+</aside>
+
+<script src="demo.js"></script>
+</body>
+</html>

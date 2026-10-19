@@ -1,0 +1,142 @@
+{
+  "kind": "applykit-profile",
+  "schemaVersion": 1,
+  "profileId": "profile-demo-lin",
+  "profileVersionId": "profile-demo-lin-bad-url",
+  "name": "林示例 · AI 应用开发 · 虚构演示",
+  "createdAt": "2026-09-03T00:00:00.000Z",
+  "source": {
+    "type": "demo",
+    "status": "fictional",
+    "note": "全部为虚构测试数据，只用于本地演示，不得用于真实求职申请。"
+  },
+  "data": {
+    "personal": {
+      "fullName": "林示例",
+      "englishName": "Example Lin",
+      "email": "lin@example.com",
+      "phone": "00000000000",
+      "birthDate": {
+        "year": 2002,
+        "month": 4,
+        "day": 15
+      },
+      "currentCity": "杭州",
+      "homepage": "javascript:alert(1)",
+      "github": null
+    },
+    "preferences": {
+      "targetRoles": [
+        "AI 应用开发",
+        "Python 后端开发"
+      ],
+      "preferredCities": [
+        "杭州",
+        "上海"
+      ],
+      "availabilityText": "随时到岗",
+      "internshipMonths": 6,
+      "daysPerWeek": 5,
+      "acceptsRelocation": false
+    },
+    "education": [
+      {
+        "id": "edu-demo-master",
+        "school": "示例理工大学",
+        "department": "软件学院",
+        "degreeLevel": "master",
+        "enrollmentStatus": "enrolled",
+        "major": "软件工程",
+        "startDate": {
+          "year": 2024,
+          "month": 9
+        },
+        "endDate": {
+          "year": 2027,
+          "month": 6
+        },
+        "gpa": "3.60",
+        "gpaScale": "4.00",
+        "description": "虚构硕士教育经历，用于验证学历分组、日期精度和字段对应关系。"
+      },
+      {
+        "id": "edu-demo-bachelor",
+        "school": "示例工程学院",
+        "department": "计算机学院",
+        "degreeLevel": "bachelor",
+        "enrollmentStatus": "graduated",
+        "major": "计算机科学与技术",
+        "startDate": {
+          "year": 2020,
+          "month": 9
+        },
+        "endDate": {
+          "year": 2024,
+          "month": 6
+        },
+        "gpa": "3.80",
+        "gpaScale": "4.00",
+        "description": "虚构本科教育经历，不能与硕士经历的学校、专业或日期混填。"
+      }
+    ],
+    "internships": [
+      {
+        "id": "intern-demo-001",
+        "company": "云笺科技（虚构）",
+        "department": "应用研发部",
+        "title": "后端开发实习生",
+        "city": "杭州",
+        "startDate": {
+          "year": 2026,
+          "month": 2
+        },
+        "endDate": {
+          "year": 2026,
+          "month": 7
+        },
+        "description": "参与虚构知识检索系统的接口与任务状态模块开发。该描述仅供本地表单测试。"
+      }
+    ],
+    "projects": [
+      {
+        "id": "project-demo-001",
+        "name": "示例知识检索助手",
+        "role": "独立开发",
+        "startDate": {
+          "year": 2026,
+          "month": 4
+        },
+        "endDate": {
+          "present": true
+        },
+        "url": "https://example.com/projects/search",
+        "description": "使用 Python 实现一个虚构的文档检索演示，包含导入、查询和结果展示。"
+      },
+      {
+        "id": "project-demo-002",
+        "name": "示例任务管理平台",
+        "role": "后端开发",
+        "startDate": {
+          "year": 2026,
+          "month": 1
+        },
+        "endDate": {
+          "year": 2026,
+          "month": 3
+        },
+        "url": "https://example.com/projects/tasks",
+        "description": "开发虚构的任务列表与状态管理页面，用于测试第二条项目的新增及独立填写。"
+      }
+    ],
+    "languages": [
+      {
+        "id": "language-demo-001",
+        "language": "英语",
+        "certificate": "CET-4",
+        "score": "500",
+        "examDate": null
+      }
+    ],
+    "selfIntroduction": "我关注 AI 应用与后端开发，熟悉 Python 与常见 Web 开发流程。以上履历全部是用于 ApplyKit 本地演示的虚构内容，不代表任何真实个人。"
+  }
+}

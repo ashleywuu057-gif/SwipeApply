@@ -1,0 +1,42 @@
+{
+  "name": "swipeapply",
+  "version": "0.1.0",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@tesseract.js-data/chi_sim": "^1.0.0",
+    "@tesseract.js-data/eng": "^1.0.0",
+    "exceljs": "^4.4.0",
+    "imapflow": "^2.0.6",
+    "jszip": "^3.10.2",
+    "lucide-react": "^1.57.0",
+    "mailparser": "^3.9.28",
+    "mammoth": "^1.12.3",
+    "motion": "^13.4.3",
+    "next": "16.3.6",
+    "playwright-core": "^1.63.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
+    "tesseract.js": "^7.0.0",
+    "undici": "^7.24.4",
+    "unpdf": "^1.8.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/mailparser": "^3.4.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

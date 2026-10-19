@@ -1,0 +1,72 @@
+{
+  "kind": "applykit-applications",
+  "schemaVersion": 1,
+  "exportedAt": "2026-09-03T02:00:00.000Z",
+  "records": [
+    {
+      "id": "application-demo-001",
+      "company": "星帆科技（演示）",
+      "role": "AI 应用开发实习生（演示）",
+      "location": "杭州",
+      "sourceUrl": "http://127.0.0.1:4173/basic.html?jobId=demo-basic-001",
+      "canonicalUrl": "http://127.0.0.1:4173/basic.html?jobId=demo-basic-001",
+      "externalJobId": "demo-basic-001",
+      "dedupeKey": "sha256:228816e128c1a99e4375e4b660008c0c40bf6f2b2f7db4f2d0a0bf6f2e9a8fcc",
+      "profileVersionId": "profile-demo-lin-v1",
+      "status": "planned",
+      "blocker": "none",
+      "createdAt": "2026-09-03T00:10:00.000Z",
+      "updatedAt": "2026-09-03T00:10:00.000Z",
+      "appliedAt": null,
+      "nextAction": "打开本地演示页，测试基础字段填写。",
+      "notes": "虚构记录。导入后可验证同一岗位的重复记录提醒。",
+      "submissionEvidence": null,
+      "timeline": [
+        {
+          "at": "2026-09-03T00:10:00.000Z",
+          "from": null,
+          "to": "planned",
+          "reason": "创建虚构演示记录"
+        }
+      ]
+    },
+    {
+      "id": "application-demo-002",
+      "company": "星帆科技（演示）",
+      "role": "Python 后端实习生（演示）",
+      "location": "上海",
+      "sourceUrl": "http://127.0.0.1:4173/experience.html?jobId=demo-experience-001",
+      "canonicalUrl": "http://127.0.0.1:4173/experience.html?jobId=demo-experience-001",
+      "externalJobId": "demo-experience-001",
+      "dedupeKey": "sha256:6b767f5b93d2bb04808a083cb7e0ef910a6fcc092bb67f2102db15e8e1cb54fe",
+      "profileVersionId": "profile-demo-lin-v1",
+      "status": "applied",
+      "blocker": "none",
+      "createdAt": "2026-09-02T08:00:00.000Z",
+      "updatedAt": "2026-09-02T08:20:00.000Z",
+      "appliedAt": "2026-09-02T08:20:00.000Z",
+      "nextAction": "演示状态筛选与后续状态编辑。",
+      "notes": "纯虚构历史样例；没有向任何真实公司发送申请。",
+      "submissionEvidence": {
+        "kind": "imported",
+        "confirmedAt": "2026-09-02T08:20:00.000Z",
+        "successSeen": true,
+        "note": "虚构的历史导入声明，仅供本地状态机测试，不代表真实投递。"
+      },
+      "timeline": [
+        {
+          "at": "2026-09-02T08:00:00.000Z",
+          "from": null,
+          "to": "filling",
+          "reason": "虚构演示：开始填写"
+        },
+        {
+          "at": "2026-09-02T08:20:00.000Z",
+          "from": "filling",
+          "to": "applied",
+          "reason": "虚构演示：历史导入声明"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 5
+    groups:
+      development-dependencies:
+        dependency-type: development
+    ignore:
+      # Zod 4 changes runtime validation behavior and needs a deliberate migration.
+      - dependency-name: zod
+        update-types: ["version-update:semver-major"]
+      # Keep compile-time Node APIs aligned with the Node 24 CI runtime.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:15"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 5

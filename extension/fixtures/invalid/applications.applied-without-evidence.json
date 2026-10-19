@@ -1,0 +1,40 @@
+{
+  "kind": "applykit-applications",
+  "schemaVersion": 1,
+  "exportedAt": "2026-09-03T02:00:00.000Z",
+  "records": [
+    {
+      "id": "application-demo-002",
+      "company": "星帆科技（演示）",
+      "role": "Python 后端实习生（演示）",
+      "location": "上海",
+      "sourceUrl": "http://127.0.0.1:4173/experience.html?jobId=demo-experience-001",
+      "canonicalUrl": "http://127.0.0.1:4173/experience.html?jobId=demo-experience-001",
+      "externalJobId": "demo-experience-001",
+      "dedupeKey": "sha256:6b767f5b93d2bb04808a083cb7e0ef910a6fcc092bb67f2102db15e8e1cb54fe",
+      "profileVersionId": "profile-demo-lin-v1",
+      "status": "applied",
+      "blocker": "none",
+      "createdAt": "2026-09-02T08:00:00.000Z",
+      "updatedAt": "2026-09-02T08:20:00.000Z",
+      "appliedAt": null,
+      "nextAction": "演示状态筛选与后续状态编辑。",
+      "notes": "纯虚构历史样例；没有向任何真实公司发送申请。",
+      "submissionEvidence": null,
+      "timeline": [
+        {
+          "at": "2026-09-02T08:00:00.000Z",
+          "from": null,
+          "to": "filling",
+          "reason": "虚构演示：开始填写"
+        },
+        {
+          "at": "2026-09-02T08:20:00.000Z",
+          "from": "filling",
+          "to": "applied",
+          "reason": "虚构演示：历史导入声明"
+        }
+      ]
+    }
+  ]
+}

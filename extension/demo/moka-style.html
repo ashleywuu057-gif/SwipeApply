@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="applykit-moka-fixture" content="true">
+  <title>Moka 结构回归演示</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<main>
+  <h1>Moka 结构回归演示</h1>
+  <p>数据仅在本地页面中传递。</p>
+  <form id="apply-form">
+    <div class="apply-block-basic">
+      <div class="blockTitle-basic">个人信息</div>
+      <div class="apply-fields-basic">
+        <div class="apply-field-row"><div class="filed-title-x">性别</div><div class="sd-Dropdown-container-x" data-demo-select='["男","女"]'><label class="sd-Select-container-x"><input name="gender" type="text" placeholder="请选择"></label></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">工作经验</div><div class="sd-Dropdown-container-x" data-demo-select='["在校生","应届毕业生","1 年以下","1 年","2 年"]'><label class="sd-Select-container-x"><input name="work-experience" type="text" placeholder="请选择"></label></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">最近公司</div><label><input name="recent-company" type="text"></label></div>
+        <div class="apply-field-row"><div class="filed-title-x">出生日期 (年龄)</div><div class="sd-Dropdown-container-x" data-demo-month-picker><label class="day_info"><input name="birth" type="text" placeholder="出生日期 (年龄)" readonly></label></div></div>
+      </div>
+    </div>
+
+    <div class="apply-block-preferences">
+      <div class="blockTitle-preferences">求职意向</div>
+      <div class="apply-fields-preferences">
+        <div class="apply-field-row"><div class="filed-title-x">当前薪资</div><label><input name="current-salary" type="text"></label></div>
+        <div class="apply-field-row"><div class="filed-title-x">期望薪资</div><label><input name="expected-salary" type="text"></label></div>
+        <div class="apply-field-row"><div class="filed-title-x">期望城市</div><label><input name="preferred-city" type="text"></label></div>
+      </div>
+    </div>
+
+    <div class="apply-block-work">
+      <div class="blockTitle-work"><span>工作经历</span><button type="button">添加</button></div>
+      <div class="apply-fields-record" data-record-section="workExperiences">
+        <div class="apply-field-row full-width-field"><div class="filed-title-x">起止时间</div><div class="month-range-select date_info"><span class="sd-Dropdown-container-x" data-demo-select='["2024","2025","2026","2027"]'><input name="work-start-year-1" type="text" placeholder="年"></span><span class="sd-Dropdown-container-x" data-demo-select='["1","2","3","4","5","6","7","8","9","10","11","12"]'><input name="work-start-month-1" type="text" placeholder="月"></span><span>-</span><span class="sd-Dropdown-container-x" data-demo-select='["2024","2025","2026","2027"]'><input name="work-end-year-1" type="text" placeholder="年"></span><span class="sd-Dropdown-container-x" data-demo-select='["1","2","3","4","5","6","7","8","9","10","11","12"]'><input name="work-end-month-1" type="text" placeholder="月"></span><label><input name="work-present-1" type="checkbox">至今</label></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">公司名称</div><input name="work-company-1" type="text"></div>
+        <div class="apply-field-row"><div class="filed-title-x">职位名称</div><input name="work-title-1" type="text"></div>
+        <div class="apply-field-row"><div class="filed-title-x">工作职责</div><textarea name="work-description-1"></textarea></div>
+      </div>
+    </div>
+
+    <div class="apply-block-education">
+      <div class="blockTitle-education"><span>教育背景</span><button type="button">添加</button></div>
+      <div class="apply-fields-record" data-record-section="education">
+        <div class="apply-field-row full-width-field"><div class="filed-title-x">就读时间</div><div class="month-range-select date_info"><span class="sd-Dropdown-container-x" data-demo-select='["2020","2024","2027"]'><input name="education-start-year-1" type="text" placeholder="年"></span><span class="sd-Dropdown-container-x" data-demo-select='["1","4","6","9"]'><input name="education-start-month-1" type="text" placeholder="月"></span><span>-</span><span class="sd-Dropdown-container-x" data-demo-select='["2024","2027"]'><input name="education-end-year-1" type="text" placeholder="年"></span><span class="sd-Dropdown-container-x" data-demo-select='["1","4","6","9"]'><input name="education-end-month-1" type="text" placeholder="月"></span></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">学校名称</div><div class="sd-Dropdown-container-x" data-demo-select='["示例理工大学"]' data-demo-custom-entry="school"><label class="sd-Select-container-x"><input name="education-school-1" type="text" placeholder="请输入就读学校"></label></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">专业名称</div><div class="sd-Dropdown-container-x" data-demo-select='["软件工程","计算机科学与技术"]' data-demo-custom-entry="major"><label class="sd-Select-container-x"><input name="education-major-1" type="text" placeholder="请输入专业名称"></label></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">学历</div><div class="sd-Dropdown-container-x" data-demo-select='["本科","硕士","博士"]'><input name="education-degree-1" type="text" placeholder="请选择"></div></div>
+      </div>
+    </div>
+
+    <div class="apply-block-internship">
+      <div class="blockTitle-internship"><span>实习经历</span><button type="button">添加</button></div>
+      <div class="apply-fields-record" data-record-section="internships">
+        <div class="apply-field-row"><div class="filed-title-x">公司名称</div><input name="intern-company-1" type="text"></div>
+        <div class="apply-field-row"><div class="filed-title-x">职位名称</div><input name="intern-title-1" type="text"></div>
+        <div class="apply-field-row"><div class="filed-title-x">工作职责</div><textarea name="intern-description-1"></textarea></div>
+      </div>
+    </div>
+
+    <div class="apply-block-project">
+      <div class="blockTitle-project"><span>项目经验</span><button type="button">添加</button></div>
+      <div class="apply-fields-record" data-record-section="projects">
+        <div class="apply-field-row full-width-field"><div class="filed-title-x">起止时间</div><div class="month-range-select date_info"><span class="sd-Dropdown-container-x" data-demo-select='["2025","2026"]'><input name="projects-start-year-1" type="text" placeholder="年"></span><span class="sd-Dropdown-container-x" data-demo-select='["1","2","3","4","5","6","7","8","9","10","11","12"]'><input name="projects-start-month-1" type="text" placeholder="月"></span><span>-</span><span class="sd-Dropdown-container-x" data-demo-select='["2025","2026"]'><input name="projects-end-year-1" type="text" placeholder="年"></span><span class="sd-Dropdown-container-x" data-demo-select='["1","2","3","4","5","6","7","8","9","10","11","12"]'><input name="projects-end-month-1" type="text" placeholder="月"></span><label><input name="projects-present-1" type="checkbox">至今</label></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">项目名称</div><input name="projects-name-1" type="text"></div>
+        <div class="apply-field-row"><div class="filed-title-x">职责</div><input name="projects-role-1" type="text"></div>
+        <div class="apply-field-row"><div class="filed-title-x">项目描述</div><textarea name="projects-description-1"></textarea></div>
+      </div>
+    </div>
+
+    <div class="apply-block-language">
+      <div class="blockTitle-language"><span>语言能力</span><button type="button">添加</button></div>
+      <div class="apply-fields-record" data-record-section="languages">
+        <div class="apply-field-row"><div class="filed-title-x">语言类型</div><input name="language-name-1" type="text"></div>
+        <div class="apply-field-row"><div class="filed-title-x">掌握程度</div><div class="sd-Dropdown-container-x" data-demo-select='["一般","良好","熟练","精通"]'><input name="language-proficiency-1" type="text" placeholder="请选择"></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">听说</div><div class="sd-Dropdown-container-x" data-demo-select='["一般","良好","熟练","精通"]'><input name="language-listening-1" type="text" placeholder="请选择"></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">读写</div><div class="sd-Dropdown-container-x" data-demo-select='["一般","良好","熟练","精通"]'><input name="language-reading-1" type="text" placeholder="请选择"></div></div>
+      </div>
+    </div>
+
+    <div class="apply-block-awards">
+      <div class="blockTitle-awards"><span>获奖经历</span><button type="button">添加</button></div>
+      <div class="apply-fields-record" data-record-section="awards">
+        <div class="apply-field-row"><div class="filed-title-x">获奖时间</div><div class="month-range-select date_info"><span class="sd-Dropdown-container-x" data-demo-select='["2024","2025","2026"]'><input name="award-year-1" type="text" placeholder="年"></span><span class="sd-Dropdown-container-x" data-demo-select='["1","2","3","4","5","6","7","8","9","10","11","12"]'><input name="award-month-1" type="text" placeholder="月"></span></div></div>
+        <div class="apply-field-row"><div class="filed-title-x">奖项名称</div><input name="award-name-1" type="text"></div>
+      </div>
+    </div>
+  </form>
+  <pre id="received-state"></pre>
+</main>
+<script src="moka-style.js"></script>
+</body>
+</html>

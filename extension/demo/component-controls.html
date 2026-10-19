@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>跨站组件回归 · 虚构表单</title>
+<style>
+  body { font: 16px system-ui; background: #f3f5f8; color: #223; margin: 24px auto; max-width: 820px; }
+  form, fieldset { border: 0; background: white; padding: 20px; }
+  .heading-shell, legend { font-weight: 700; margin: 24px 0 10px; }
+  .am-list-item, .text-row, .custom-row { padding: 12px; border-bottom: 1px solid #eee; }
+  .am-list-line, .text-row { display: flex; gap: 20px; align-items: center; }
+  .am-list-content { flex: 1; }
+  .am-list-extra { min-width: 160px; color: #567; }
+  .am-list-arrow-horizontal::after { content: '›'; }
+  input { padding: 8px; } button { padding: 10px 20px; }
+  .am-picker-popup { position: fixed; background: white; z-index: 100; bottom: 0; left: 10%; right: 10%; box-shadow: 0 0 0 100vh #0004; }
+  .am-picker-popup-header { display: flex; justify-content: space-between; padding: 16px; }
+  .am-picker { display: flex; }
+  .am-picker-col { position: relative; height: 170px; overflow: hidden; flex: 1; }
+  .am-picker-col-content { padding: 68px 0; }
+  .am-picker-col-item { height: 34px; line-height: 34px; text-align: center; }
+  .am-picker-col-indicator { box-sizing: border-box; height: 34px; position: absolute; top: 68px; width: 100%; border-block: 1px solid #ccc; pointer-events: none; }
+  .am-picker-col-item-selected { color: #176ed0; }
+</style>
+<h1>虚构表单：通用扫描 + Ant Mobile 组件</h1>
+<p>此页没有站点适配标记。滚轮只响应拖动，单击选项不会选择；确认后才更新页面状态。</p>
+<form id="fixture-form" onsubmit="return false"></form>
+<script src="component-controls.js"></script>
+</html>

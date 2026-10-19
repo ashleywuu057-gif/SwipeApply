@@ -1,0 +1,51 @@
+{
+  "name": "applykit",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "投简助手 ApplyKit：使用本地履历填写招聘表单，校验结果并管理投递记录。",
+  "keywords": [
+    "chrome-extension",
+    "manifest-v3",
+    "resume",
+    "autofill",
+    "job-application"
+  ],
+  "engines": {
+    "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+  },
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "demo": "node scripts/demo-server.mjs",
+    "build:e2e": "node scripts/build-e2e.mjs",
+    "build:diagnose": "node scripts/build-diagnose.mjs",
+    "diagnose": "node scripts/build-diagnose.mjs && node scripts/diagnose-server.mjs",
+    "test:e2e": "node scripts/build-e2e.mjs && playwright test",
+    "verify": "npm run typecheck && npm test && npm run build && npm run test:e2e"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/chrome": "^0.2.9",
+    "@types/node": "^24.13.4",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeepestWind/ApplyKit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DeepestWind/ApplyKit/issues"
+  },
+  "homepage": "https://github.com/DeepestWind/ApplyKit#readme"
+}

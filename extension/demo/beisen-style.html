@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="applykit-beisen-fixture" content="true">
+  <title>北森 Phoenix 结构回归演示</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .beisen-form-root { display: grid; gap: 20px; }
+    .beisen-section { border: 1px solid #ccd4df; padding: 16px; }
+    .beisen-section-heading { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .beisen-record { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 12px; margin-bottom: 12px; }
+    .form-item__title { font-weight: 600; margin-bottom: 5px; }
+    .form-item__required::before { content: '*'; color: #d33; }
+    .phoenix-select, .phoenix-auto-complete-container, .phoenix-input { border: 1px solid #aab4c0; min-height: 36px; padding: 4px 8px; }
+    .phoenix-select__content { margin: 0; padding: 0; list-style: none; }
+    .phoenix-select__input, .phoenix-input__input { border: 0; width: 100%; min-height: 28px; }
+    .phoenix-select__tipEle { display: block; }
+    .phoenix-radio-group { display: flex; gap: 16px; }
+    .phoenix-radio-group__radioItem { cursor: pointer; padding: 5px 9px; border: 1px solid #aab4c0; }
+    .phoenix-radio--checked { color: #1769e0; font-weight: 700; }
+    .phoenix-checkbox { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+    .phoenix-checkbox__box { display: inline-block; width: 16px; height: 16px; border: 1px solid #8895a5; }
+    .phoenix-checkbox__input { opacity: 0; width: 16px; height: 16px; margin: 0; }
+    [id$="_addButton"] { color: #1769e0; cursor: pointer; width: fit-content; }
+    .common-unmodeled-layer { position: fixed; left: 30%; top: 20%; z-index: 1200; background: white; border: 1px solid #778; padding: 8px; }
+    .phoenix-selectList__listItem, .phoenix-calendar-month-panel-month, .icon-container { cursor: pointer; padding: 6px 10px; }
+    .area-selector-container { min-width: 520px; }
+    .area-search-input input { border: 1px solid #aab4c0; width: 95%; }
+    .content-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px 0; }
+    .area-item-container, .select-item-container { padding: 5px; }
+    .area-footer-button { display: flex; justify-content: flex-end; gap: 8px; }
+    .phoenix-button__content { cursor: pointer; border: 1px solid #aab4c0; padding: 5px 10px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>北森 Phoenix 结构回归演示</h1>
+  <div class="beisen-form-root" id="beisen-form">
+    <div class="beisen-section"><div class="beisen-section-heading">投递意向</div><div><div><div class="beisen-record">
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">意向工作地点</label></div><div class="form-item__control"><div class="phoenix-select" data-shift-on-select data-options='["杭州市","上海市"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="preferred-city" value=""></li></ul></div></div></div>
+    </div></div></div></div>
+
+    <div class="beisen-section"><div class="beisen-section-heading">个人信息</div><div><div><div class="beisen-record">
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><a class="form-item__required"></a><label class="form-item__text">姓名</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="full-name" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">英文名</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="english-name" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><a class="form-item__required"></a><label class="form-item__text">性别</label></div><div class="form-item__control"><div class="phoenix-radio-group" data-name="gender"><div class="phoenix-radio-group__radioItem"><div class="phoenix-radio"><span class="phoenix-radio__radio-text">男</span></div></div><div class="phoenix-radio-group__radioItem"><div class="phoenix-radio"><span class="phoenix-radio__radio-text">女</span></div></div></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><a class="form-item__required"></a><label class="form-item__text">出生日期</label></div><div class="form-item__control"><div class="phoenix-select" data-day-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="birth-date" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">学习形式</label></div><div class="form-item__control"><div class="phoenix-select" data-options='["全国普通高等院校全日制","非全日制"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="highest-education-type" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">毕业时间</label></div><div class="form-item__control"><div class="phoenix-select" data-day-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="highest-graduation-date" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">邮箱</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="email" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">现居住地</label></div><div class="form-item__control"><div class="phoenix-select" data-area-picker data-options='["杭州市","上海市"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="current-city" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">籍贯</label></div><div class="form-item__control"><div class="phoenix-select" data-area-picker data-options='["苏州市","杭州市"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="native-place" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">生源地</label></div><div class="form-item__control"><div class="phoenix-select" data-area-picker data-options='["苏州市","杭州市"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="student-origin" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">英语等级</label></div><div class="form-item__control"><div class="phoenix-select" data-options='["大学英语四级","大学英语六级"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="english-level" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">英语等级成绩</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="english-score" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">手机号码</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="phone" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">证件号码</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="identity-number" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">紧急联系人</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="emergency-contact" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">紧急联系电话</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="emergency-phone" placeholder="请输入"></div></div></div>
+    </div></div></div></div>
+
+    <div class="beisen-section"><div class="beisen-section-heading">求职意向</div><div><div><div class="beisen-record">
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">是否接受工作城市调剂</label></div><div class="form-item__control"><div class="phoenix-radio-group" data-name="relocation"><div class="phoenix-radio-group__radioItem"><div class="phoenix-radio"><span class="phoenix-radio__radio-text">是</span></div></div><div class="phoenix-radio-group__radioItem"><div class="phoenix-radio"><span class="phoenix-radio__radio-text">否</span></div></div></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">期望工作城市</label></div><div class="form-item__control"><div class="phoenix-select phoenix-select--multi" data-area-picker data-area-multi data-options='["杭州市","上海市"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="expected-city" value=""></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">到岗时间</label></div><div class="form-item__control"><div class="phoenix-select" data-options='["一周内","一个月内","三个月内","三个月以上","面议"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="availability" value=""></li></ul></div></div></div>
+    </div></div></div></div>
+
+    <div class="beisen-section" data-repeated="education"><div class="beisen-section-heading">教育经历</div><div class="beisen-body"><div class="beisen-records"><div class="beisen-record" data-record>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">学历</label></div><div class="form-item__control"><div class="phoenix-select" data-options='["本科","硕士研究生","博士研究生"]'><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="education-degree-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">学校名称</label></div><div class="form-item__control"><div class="phoenix-auto-complete-container" data-options='["示例理工大学","示例工程学院"]'><div class="phoenix-unmodeled-layer"><div class="phoenix-unmodeled-layer__inner"><div class="phoenix-unmodeled-layer__protect"><div class="phoenix-unmodeled-layer__content phoenix-unmodeled-layer__content--block"><div class="phoenix-input"><input class="phoenix-input__input" name="education-school-1" placeholder="请输入"></div></div></div></div></div></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">是否为最高学历</label></div><div class="form-item__control"><div class="phoenix-radio-group" data-name="education-highest-1"><div class="phoenix-radio-group__radioItem"><div class="phoenix-radio"><span class="phoenix-radio__radio-text">是</span></div></div><div class="phoenix-radio-group__radioItem"><div class="phoenix-radio"><span class="phoenix-radio__radio-text">否</span></div></div></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">开始时间</label></div><div class="form-item__control"><div class="phoenix-select" data-month-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="education-start-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">结束时间</label></div><div class="form-item__control"><div class="phoenix-select" data-month-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="education-end-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">学院名称</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="education-department-1" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">专业名称</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="education-major-1" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">课题研究</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="education-topic-1" placeholder="请输入"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">成绩(GPA)</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="education-gpa-1" placeholder="请输入"></div></div></div>
+    </div><div id="education_addButton">添加教育经历</div></div></div></div>
+
+    <div class="beisen-section" data-repeated="internships"><div class="beisen-section-heading">实习经历</div><div class="beisen-body"><div class="beisen-records"><div class="beisen-record" data-record>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">开始时间</label></div><div class="form-item__control"><div class="phoenix-select" data-month-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="internship-start-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">结束时间</label></div><div class="form-item__control"><div class="phoenix-select" data-month-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="internship-end-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">单位名称</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="internship-company-1"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">职位名称</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="internship-title-1"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">实习内容</label></div><div class="form-item__control"><textarea name="internship-description-1"></textarea></div></div>
+    </div><div id="internships_addButton">添加实习经历</div></div></div></div>
+
+    <div class="beisen-section" data-repeated="projects"><div class="beisen-section-heading">在校实践</div><div class="beisen-body"><div class="beisen-records"><div class="beisen-record" data-record>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">开始时间</label></div><div class="form-item__control"><div class="phoenix-select" data-month-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="project-start-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">结束时间</label></div><div class="form-item__control"><div class="phoenix-select" data-month-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="project-end-1"></li></ul></div></div></div>
+      <div class="phoenix-checkbox"><span class="phoenix-checkbox__box"><input class="phoenix-checkbox__input" type="checkbox" name="project-present-1"></span><span class="phoenix-checkbox__text color-M3">至今</span></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">实践名称</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="project-name-1"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">职务</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="project-role-1"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">实践描述</label></div><div class="form-item__control"><textarea name="project-description-1"></textarea></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">项目成果</label></div><div class="form-item__control"><textarea name="project-result-1"></textarea></div></div>
+    </div><div id="projects_addButton">添加在校实践</div></div></div></div>
+
+    <div class="beisen-section" data-repeated="awards"><div class="beisen-section-heading">获奖情况</div><div class="beisen-body"><div class="beisen-records"><div class="beisen-record" data-record>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">获奖项</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="award-name-1"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">获奖时间</label></div><div class="form-item__control"><div class="phoenix-select" data-day-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="award-date-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">获奖描述</label></div><div class="form-item__control"><textarea name="award-description-1"></textarea></div></div>
+    </div><div id="awards_addButton">添加获奖情况</div></div></div></div>
+
+    <div class="beisen-section" data-repeated="publications"><div class="beisen-section-heading">论文/专著</div><div class="beisen-body"><div class="beisen-records"><div class="beisen-record" data-record>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">名称</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="publication-name-1"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">发布时间</label></div><div class="form-item__control"><div class="phoenix-select" data-day-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="publication-date-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">成果描述</label></div><div class="form-item__control"><textarea name="publication-description-1"></textarea></div></div>
+    </div><div id="publications_addButton">添加论文/专著</div></div></div></div>
+
+    <div class="beisen-section" data-repeated="certificates"><div class="beisen-section-heading">证书</div><div class="beisen-body"><div class="beisen-records"><div class="beisen-record" data-record>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">证书名称</label></div><div class="form-item__control"><div class="phoenix-input"><input class="phoenix-input__input" name="certificate-name-1"></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">获得时间</label></div><div class="form-item__control"><div class="phoenix-select" data-day-picker><div class="phoenix-select__placeHolder phoenix-select__placeHolder--show">请选择</div><ul class="phoenix-select__content"><li><input class="phoenix-select__input" name="certificate-date-1"></li></ul></div></div></div>
+      <div class="form-item form-item--phoenix"><div class="form-item__title"><label class="form-item__text">证书描述</label></div><div class="form-item__control"><textarea name="certificate-description-1"></textarea></div></div>
+    </div><div id="certificates_addButton">添加证书</div></div></div></div>
+  </div>
+</main>
+<aside class="video-together"><label>房间<input name="injected-room"></label><label>密码<input name="injected-password" type="password"></label></aside>
+<script src="beisen-style.js"></script>
+</body>
+</html>

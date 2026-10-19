@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="applykit-demo-page" content="experience">
+<title>Python 后端实习生（演示） - 星帆科技（演示）</title>
+<link rel="stylesheet" href="demo.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Python 后端实习生（演示）",
+  "identifier": { "@type": "PropertyValue", "name": "demoJobId", "value": "demo-experience-001" },
+  "hiringOrganization": { "@type": "Organization", "name": "星帆科技（演示）" },
+  "jobLocation": {
+    "@type": "Place",
+    "address": { "@type": "PostalAddress", "addressLocality": "上海", "addressCountry": "CN" }
+  },
+  "description": "本地演示岗位，用于测试多段经历、分拆年月与动态控件。"
+}
+</script>
+</head>
+<body>
+<div class="demo-banner">
+  本地演示 · 数据不会提交给招聘公司
+  <small>用于验证两段教育经历不串位、日期精度、异步下拉与新增经历。</small>
+</div>
+
+<main>
+  <h1>经历与动态组件演示</h1>
+  <p class="muted">公司：星帆科技（演示） · 地点：上海 · 岗位编号：demo-experience-001</p>
+
+  <div class="toolbar">
+    <button type="button" id="demo-reset">清空表单</button>
+  </div>
+
+  <form id="apply-form" autocomplete="off">
+    <fieldset>
+      <legend>硕士教育经历</legend>
+      <div class="field">
+        <label for="edu-master-school">学校</label>
+        <input type="text" id="edu-master-school" name="edu-master-school">
+      </div>
+      <div class="field">
+        <label for="edu-master-major">专业</label>
+        <input type="text" id="edu-master-major" name="edu-master-major">
+      </div>
+      <div class="field" role="group" aria-labelledby="edu-master-start-label">
+        <span class="group-label" id="edu-master-start-label">入学时间</span>
+        <span class="subfield">
+          <label for="edu-master-start-year">年</label>
+          <select id="edu-master-start-year" name="edu-master-start-year">
+            <option value="">请选择</option>
+            <option value="2020">2020</option><option value="2021">2021</option>
+            <option value="2022">2022</option><option value="2023">2023</option>
+            <option value="2024">2024</option><option value="2025">2025</option>
+          </select>
+        </span>
+        <span class="subfield">
+          <label for="edu-master-start-month">月</label>
+          <select id="edu-master-start-month" name="edu-master-start-month">
+            <option value="">请选择</option>
+            <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
+            <option value="6">6月</option><option value="7">7月</option><option value="9">9月</option>
+          </select>
+        </span>
+      </div>
+      <div class="field">
+        <label for="edu-master-end">毕业时间</label>
+        <input type="month" id="edu-master-end" name="edu-master-end">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>本科教育经历</legend>
+      <div class="field">
+        <label for="edu-bachelor-school">学校</label>
+        <input type="text" id="edu-bachelor-school" name="edu-bachelor-school">
+      </div>
+      <div class="field">
+        <label for="edu-bachelor-major">专业</label>
+        <input type="text" id="edu-bachelor-major" name="edu-bachelor-major">
+      </div>
+      <div class="field" role="group" aria-labelledby="edu-bachelor-start-label">
+        <span class="group-label" id="edu-bachelor-start-label">入学时间</span>
+        <span class="subfield">
+          <label for="edu-bachelor-start-year">年</label>
+          <select id="edu-bachelor-start-year" name="edu-bachelor-start-year">
+            <option value="">请选择</option>
+            <option value="2018">2018</option><option value="2019">2019</option>
+            <option value="2020">2020</option><option value="2021">2021</option>
+          </select>
+        </span>
+        <span class="subfield">
+          <label for="edu-bachelor-start-month">月</label>
+          <select id="edu-bachelor-start-month" name="edu-bachelor-start-month">
+            <option value="">请选择</option>
+            <option value="3">3月</option><option value="6">6月</option><option value="9">9月</option>
+          </select>
+        </span>
+      </div>
+      <div class="field">
+        <label for="edu-bachelor-end">毕业时间</label>
+        <input type="month" id="edu-bachelor-end" name="edu-bachelor-end">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>实习经历</legend>
+      <div class="field">
+        <label for="intern-company">公司名称</label>
+        <input type="text" id="intern-company" name="intern-company">
+      </div>
+      <div class="field">
+        <label for="intern-title">实习岗位</label>
+        <input type="text" id="intern-title" name="intern-title">
+      </div>
+      <div class="field" data-demo-combobox data-demo-options='["北京","上海","杭州","深圳","成都"]'>
+        <label for="intern-city">实习城市</label>
+        <span class="combo-wrap">
+          <input type="text" id="intern-city" name="intern-city" role="combobox"
+                 aria-controls="intern-city-list" aria-expanded="false" aria-autocomplete="list" autocomplete="off">
+          <ul class="combo-list" id="intern-city-list" role="listbox" hidden></ul>
+        </span>
+      </div>
+      <div class="field">
+        <label for="intern-start">开始时间</label>
+        <input type="month" id="intern-start" name="intern-start">
+      </div>
+      <div class="field">
+        <label for="intern-end">结束时间</label>
+        <input type="month" id="intern-end" name="intern-end">
+      </div>
+    </fieldset>
+
+    <fieldset id="projects-section">
+      <legend>项目经历</legend>
+      <div id="project-records">
+        <div class="record">
+          <p class="record-title">项目 1</p>
+          <div class="field">
+            <label for="project-name-1">项目名称</label>
+            <input type="text" id="project-name-1" name="project-name-1">
+          </div>
+          <div class="field">
+            <label for="project-role-1">项目职责</label>
+            <input type="text" id="project-role-1" name="project-role-1">
+          </div>
+          <div class="field">
+            <label for="project-start-1">开始时间</label>
+            <input type="month" id="project-start-1" name="project-start-1">
+          </div>
+          <div class="field">
+            <label for="project-end-1">结束时间</label>
+            <input type="text" id="project-end-1" name="project-end-1">
+          </div>
+        </div>
+      </div>
+      <button type="button" data-applykit-add="projects" id="add-project">新增项目经历</button>
+    </fieldset>
+
+    <button type="button" id="demo-submit" class="primary">提交演示申请</button>
+    <div class="success-box" id="demo-success" hidden></div>
+  </form>
+</main>
+
+<aside class="state-panel">
+  <h2>页面实际接收到的数据</h2>
+  <p class="muted">来自本页自己的 input / change 监听器</p>
+  <div id="received-state"></div>
+</aside>
+
+<script src="demo.js"></script>
+</body>
+</html>

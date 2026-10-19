@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.test-dist/
+.diagnose/
+.playwright-profile/
+test-results/
+playwright-report/
+*.log
+.env*
+private-data/
+backups/
+*.local.json
+.DS_Store

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="applykit-demo-page" content="ats-style">
+<title>示例招聘系统 · 在线简历（演示）</title>
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<div class="demo-banner">
+  本地演示 · 数据不会提交给招聘公司
+  <small>
+    这一页复刻了国内常见 ATS（如 Moka）的 DOM 结构：分区标题和字段标签都是带随机后缀类名的
+    &lt;div&gt;，没有 label[for]；一部分「输入框」其实是自定义下拉的壳；账号带来的字段被网站锁定。
+    结构照抄，内容全部虚构。
+  </small>
+</div>
+
+<main>
+  <h1>在线简历（演示）</h1>
+
+  <div class="toolbar">
+    <button type="button" id="demo-reset">清空表单</button>
+  </div>
+
+  <form id="apply-form" autocomplete="off">
+    <!-- 分区标题是 div，类名带 CSS Modules 随机后缀 -->
+    <div class="basic-block-vMDbltFTJl">
+      <div class="block-title-tWlS5jtcp6">基础信息</div>
+
+      <!-- 账号带来的字段：网站锁定，扩展不能改 -->
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">姓名</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="acct-name" value="账号带来的姓名" disabled></label>
+        </div>
+      </div>
+
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">手机号码</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="acct-phone" value="00000000001" disabled></label>
+        </div>
+      </div>
+
+      <!-- 普通字段：标签在祖父的兄弟节点上 -->
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">邮箱</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="email"></label>
+        </div>
+      </div>
+
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">所在地</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="city" placeholder="所在地"></label>
+        </div>
+      </div>
+
+      <!-- 敏感信息：不进入履历模型，必须待处理 -->
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">证件号码</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="id-number"></label>
+        </div>
+      </div>
+
+      <!-- 自定义下拉：点开后才渲染选项，选项在同一个 Dropdown 容器内 -->
+      <div class="apply-field-Q2iJ7AtQGX Select-oqOV0aGogs">
+        <div class="filed-title-pGq7NIJQDs">最高学历</div>
+        <div class="ctrl-CICMG4Fr4_">
+          <div class="sd-Tooltip-container-2B2OE">
+            <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["本科","硕士","博士","高中","大专","中专"]'>
+              <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+                <input class="sd-Input-input-10L0t" type="text" name="degree" placeholder="请选择" autocomplete="off">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 可搜索下拉：先输入过滤，再点选项 -->
+      <div class="apply-field-Q2iJ7AtQGX Select-oqOV0aGogs">
+        <div class="filed-title-pGq7NIJQDs">性别</div>
+        <div class="ctrl-CICMG4Fr4_">
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["女","不愿透露"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input class="sd-Input-input-10L0t" type="text" name="gender" placeholder="请选择" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 日期选择器：不是下拉，扩展必须继续拒绝操作 -->
+      <div class="apply-field-Q2iJ7AtQGX">
+        <div class="filed-title-pGq7NIJQDs">出生日期</div>
+        <div class="ctrl-CICMG4Fr4_">
+          <div class="sd-Dropdown-container-1CigZ sd-DatePicker-container-9xKm2">
+            <label class="sd-Input-container-2S_vM">
+              <input class="sd-Input-input-10L0t" type="text" name="birth" placeholder="请选择日期" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="basic-block-vMDbltFTJl">
+      <div class="block-title-tWlS5jtcp6">教育背景</div>
+      <div class="apply-field-Q2iJ7AtQGX Select-oqOV0aGogs">
+        <div class="filed-title-pGq7NIJQDs">学校名称</div>
+        <div class="ctrl-CICMG4Fr4_">
+          <!-- 可搜索：选项要先输入过滤才出现 -->
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-searchable
+               data-demo-options='["示例理工大学","示例工程学院","示例师范大学","示例财经大学"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input class="sd-Input-input-10L0t" type="text" name="edu-school" placeholder="请选择" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">专业</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="edu-major"></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 同一页里既有「工作经历」又有「实习经历」：模型里只有实习经历一类 -->
+    <div class="basic-block-vMDbltFTJl">
+      <div class="block-title-tWlS5jtcp6">工作经历</div>
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">公司名称</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="work-company"></label>
+        </div>
+      </div>
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">职位名称</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="work-title"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="basic-block-vMDbltFTJl">
+      <div class="block-title-tWlS5jtcp6">实习经历</div>
+      <!-- Moka 式四段年月范围：四个无 ARIA 下拉，只能靠 年/月占位符与顺序识别。 -->
+      <div class="apply-field-Q2iJ7AtQGX date_info-nCj8tT_zjw full-width-field-_9KdqB6mcu">
+        <div class="filed-title-pGq7NIJQDs">起止时间</div>
+        <div class="month-range-select date_info wrapper-Wilqy7sjl0">
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["2024","2025","2026","2027"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input type="text" name="intern-start-year" placeholder="年" autocomplete="off">
+            </label>
+          </div>
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["1","2","3","4","5","6","7","8","9","10","11","12"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input type="text" name="intern-start-month" placeholder="月" autocomplete="off">
+            </label>
+          </div>
+          <span>-</span>
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["2024","2025","2026","2027"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input type="text" name="intern-end-year" placeholder="年" autocomplete="off">
+            </label>
+          </div>
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["1","2","3","4","5","6","7","8","9","10","11","12"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input type="text" name="intern-end-month" placeholder="月" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">公司名称</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="intern-company"></label>
+        </div>
+      </div>
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">职位名称</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><input class="sd-Input-input-10L0t" type="text" name="intern-title"></label>
+        </div>
+      </div>
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">工作职责</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><textarea class="sd-Input-input-10L0t" name="intern-duty" rows="3"></textarea></label>
+        </div>
+      </div>
+      <!-- 可搜索下拉：不输入关键字不出选项 -->
+      <div class="apply-field-Q2iJ7AtQGX Select-oqOV0aGogs">
+        <div class="filed-title-pGq7NIJQDs">实习城市</div>
+        <div class="ctrl-CICMG4Fr4_">
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-searchable
+               data-demo-options='["北京","上海","杭州","深圳","广州","成都"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input class="sd-Input-input-10L0t" type="text" name="intern-city" placeholder="请选择" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="basic-block-vMDbltFTJl">
+      <div class="block-title-tWlS5jtcp6">语言能力</div>
+      <!-- 普通自定义下拉：点开才渲染选项 -->
+      <div class="apply-field-Q2iJ7AtQGX Select-oqOV0aGogs">
+        <div class="filed-title-pGq7NIJQDs">语言类型</div>
+        <div class="ctrl-CICMG4Fr4_">
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["英语","日语","法语","德语"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input class="sd-Input-input-10L0t" type="text" name="lang-type" placeholder="请选择" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="basic-block-vMDbltFTJl">
+      <div class="block-title-tWlS5jtcp6">求职意向</div>
+      <!-- 布尔值经过等价词表落到下拉选项上 -->
+      <div class="apply-field-Q2iJ7AtQGX Select-oqOV0aGogs">
+        <div class="filed-title-pGq7NIJQDs">是否接受异地</div>
+        <div class="ctrl-CICMG4Fr4_">
+          <div class="sd-Dropdown-container-1CigZ" data-demo-select data-demo-options='["是","否"]'>
+            <label class="sd-Input-container-2S_vM sd-Select-container-1Eq4x">
+              <input class="sd-Input-input-10L0t" type="text" name="relocation" placeholder="请选择" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="basic-block-vMDbltFTJl">
+      <div class="block-title-tWlS5jtcp6">自我描述</div>
+      <div class="field-qLq39ezkYe">
+        <div class="filed-title-pGq7NIJQDs">自我描述</div>
+        <div class="sd-Tooltip-container-2B2OE">
+          <label class="sd-Input-container-2S_vM"><textarea class="sd-Input-input-10L0t" name="self-desc" rows="4"></textarea></label>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" id="demo-submit" class="primary">提交演示申请</button>
+    <div class="success-box" id="demo-success" hidden></div>
+  </form>
+</main>
+
+<aside class="state-panel">
+  <h2>页面实际接收到的数据</h2>
+  <p class="muted">来自本页自己的 input / change 监听器</p>
+  <div id="received-state"></div>
+</aside>
+
+<script src="demo.js"></script>
+</body>
+</html>

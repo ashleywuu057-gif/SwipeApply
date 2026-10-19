@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="applykit-demo-page" content="edge-cases">
+<title>异常与学习场景（演示）</title>
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<div class="demo-banner">
+  本地演示 · 数据不会提交给招聘公司
+  <small>用于验证陌生标签的学习、地址不混填、日期精度不足、声明与附件不自动操作。</small>
+</div>
+
+<main>
+  <h1>异常、学习与幂等演示</h1>
+  <p class="muted" id="layout-state">当前布局：原版</p>
+
+  <div class="toolbar">
+    <button type="button" id="demo-reset">清空表单</button>
+    <button type="button" id="demo-switch-layout">切换页面布局（使缓存规则失效）</button>
+    <button type="button" id="demo-switch-route">切换路由并替换模块</button>
+  </div>
+
+  <form id="apply-form" autocomplete="off">
+    <fieldset>
+      <legend>申请人信息</legend>
+
+      <div class="field">
+        <label for="applicant-name">姓名</label>
+        <input type="text" id="applicant-name" name="applicant-name">
+      </div>
+
+      <div class="field">
+        <label for="contact-inbox">联系信箱入口</label>
+        <input type="text" id="contact-inbox" name="contact-inbox">
+      </div>
+
+      <div class="field">
+        <label for="current-address">现居地</label>
+        <input type="text" id="current-address" name="current-address">
+      </div>
+
+      <div class="field">
+        <label for="registered-address">户籍地</label>
+        <input type="text" id="registered-address" name="registered-address">
+      </div>
+
+      <div class="field">
+        <label for="password">账号密码</label>
+        <input type="password" id="password" name="password">
+      </div>
+      <input type="hidden" id="csrf" name="csrf" value="demo-hidden-value">
+    </fieldset>
+
+    <fieldset>
+      <legend>硕士教育经历</legend>
+      <div class="field">
+        <label for="edu-school">学校</label>
+        <input type="text" id="edu-school" name="edu-school">
+      </div>
+      <div class="field">
+        <label for="edu-address">学校地址</label>
+        <input type="text" id="edu-address" name="edu-address">
+      </div>
+      <div class="field">
+        <label for="edu-graduation">毕业时间</label>
+        <input type="date" id="edu-graduation" name="edu-graduation">
+        <span class="muted">网站要求精确到日</span>
+      </div>
+      <div class="field">
+        <label for="degree-level">学历</label>
+        <select id="degree-level" name="degree-level">
+          <option value="">请选择</option>
+          <option value="本科">本科</option>
+          <option value="硕士">硕士</option>
+          <option value="博士">博士</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>项目经历</legend>
+      <div class="record">
+        <p class="record-title">项目 A</p>
+        <div class="field">
+          <label for="proj-a-name">项目名称</label>
+          <input type="text" id="proj-a-name" name="proj-a-name" value="示例知识检索助手">
+        </div>
+        <div class="field">
+          <label for="proj-a-role">项目职责</label>
+          <input type="text" id="proj-a-role" name="proj-a-role">
+        </div>
+      </div>
+      <div class="record">
+        <p class="record-title">项目 B</p>
+        <div class="field">
+          <label for="proj-b-name">项目名称</label>
+          <input type="text" id="proj-b-name" name="proj-b-name" value="示例知识检索助手">
+        </div>
+        <div class="field">
+          <label for="proj-b-role">项目职责</label>
+          <input type="text" id="proj-b-role" name="proj-b-role">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset id="replaceable-section">
+      <legend>可替换模块</legend>
+      <div class="field">
+        <label for="replaceable-note">补充说明</label>
+        <input type="text" id="replaceable-note" name="replaceable-note">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>材料与声明</legend>
+
+      <div class="field">
+        <label for="resume-file">简历附件</label>
+        <input type="file" id="resume-file" name="resume-file">
+      </div>
+
+      <div class="field">
+        <label class="subfield"><input type="checkbox" id="declaration" name="declaration"> 我声明以上信息真实有效</label>
+      </div>
+
+      <div class="field">
+        <label for="custom-widget">自定义评分控件</label>
+        <div class="custom-widget" id="custom-widget-box">（这是一个没有语义的自定义控件，扩展不会操作它）</div>
+      </div>
+
+      <div class="field">
+        <label for="embedded">内嵌问卷</label>
+        <iframe id="embedded" title="内嵌演示问卷" src="about:blank" width="240" height="60"></iframe>
+      </div>
+    </fieldset>
+
+    <button type="button" id="demo-submit" class="primary">提交演示申请</button>
+    <div class="success-box" id="demo-success" hidden></div>
+  </form>
+</main>
+
+<aside class="state-panel">
+  <h2>页面实际接收到的数据</h2>
+  <p class="muted">来自本页自己的 input / change 监听器</p>
+  <div id="received-state"></div>
+</aside>
+
+<script src="demo.js"></script>
+</body>
+</html>
