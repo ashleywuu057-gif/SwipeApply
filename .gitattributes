@@ -1,0 +1,5 @@
+# 启动脚本的换行符：Windows 脚本用 CRLF，Mac 脚本用 LF，不管在哪个系统下载都能直接双击
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.command text eol=lf
+*.sh text eol=lf
