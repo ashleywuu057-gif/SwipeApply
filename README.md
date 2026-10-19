@@ -12,7 +12,25 @@
 - **投递和面试**：读招聘邮件更新进度，面试前自动准备公司调研和面试题
 - **隐私**：数据只在本机；发给模型前先在本地脱敏，你能看到发出去的全部内容
 
-## 快速开始
+## 下载即用（不用写代码）
+
+1. 到右边的 **[Releases](https://github.com/ashleywuu057-gif/SwipeApply/releases/latest)** 下载最新的 `SwipeApply-*.zip`，解压到一个固定的文件夹（不要在压缩包里直接双击）
+2. 双击启动：
+   - **Windows**：`启动 SwipeApply.bat`
+   - **Mac**：`启动 SwipeApply（Mac）.command`。第一次如果提示「无法验证开发者」：右键点它 →「打开」→ 再点「打开」
+3. 第一次会自动下载 Node.js 和依赖（都放在这个文件夹里，不装到系统，国内镜像，大约 5–10 分钟），然后弹出一个文本文件让你填 **两个 API Key**，保存后自动打开浏览器
+4. 以后每次用，再双击一下就行。那个黑色命令行窗口别关，关了 SwipeApply 就停了
+
+**两个 Key 怎么申请**（各几分钟，充几块钱够用一整个求职季）：
+
+| 填在哪 | 是什么 | 去哪申请 |
+| --- | --- | --- |
+| `LLM_API_KEY=` | DeepSeek：写简历、改简历、匹配岗位 | [platform.deepseek.com](https://platform.deepseek.com) → 注册 → 充值 → API Keys → 创建 |
+| `SEARCH_LLM_API_KEY=` | 阿里云百炼（通义千问）：联网找岗位和 JD、快速理解你说的话 | [bailian.console.aliyun.com](https://bailian.console.aliyun.com) → 开通百炼 → API-KEY → 创建 |
+
+Key 只保存在你电脑上的 `.env.local` 里，不会上传到任何地方。不要把填好 Key 的文件夹发给别人。
+
+## 从源码运行（开发者）
 
 每个人在自己电脑上运行一份：**没有服务器，你的简历、素材、投递记录只存在自己电脑的 `data/` 文件夹里**，密钥也只在你自己的 `.env.local` 里。
 

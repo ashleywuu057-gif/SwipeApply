@@ -47,3 +47,6 @@ next-env.d.ts
 
 # 以前会话留下的改动说明、补丁、截图（截图里有个人信息），只留在本机
 _claude_changes/
+
+# 双击启动时下载到本文件夹的 Node.js
+runtime/
