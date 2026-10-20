@@ -50,3 +50,6 @@ _claude_changes/
 
 # 双击启动时下载到本文件夹的 Node.js
 runtime/
+
+# Cloudflare 部署时的本地缓存
+proxy/.wrangler/

@@ -30,8 +30,7 @@ try {
   # 2. Key：没有 .env.local 就从朋友给的配置或模板复制一份，打开记事本让你填
   if (-not (Test-Path ".env.local")) {
     Copy-Item ".env.example" ".env.local"
-    Say "第一次使用：请在打开的记事本里填上你自己的 LLM_API_KEY（DeepSeek）和 SEARCH_LLM_API_KEY（阿里云百炼），保存后关掉记事本。怎么申请见 README"
-    Start-Process notepad.exe ".env.local" -Wait
+    Say "不用填 Key 也能用：AI 功能每天有免费额度。想不受限制地用，以后在这个文件夹的 .env.local 里填自己的 Key（见 README）"
   }
 
   # 3. 依赖：第一次安装（国内镜像，几分钟）

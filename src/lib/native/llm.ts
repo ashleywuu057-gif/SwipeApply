@@ -1,4 +1,5 @@
 import "server-only";
+import "../free-proxy"; // 没填自己的 Key 时走免费额度（必须在读 LLM_* 配置之前）
 import { llmConfig, llmPost, postJson } from "../extract";
 
 /**

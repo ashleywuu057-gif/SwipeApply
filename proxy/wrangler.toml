@@ -1,0 +1,19 @@
+# SwipeApply 免费额度中转：Cloudflare Pages 项目 swipeapply-api（地址 https://swipeapply-api.pages.dev）
+# 用 pages.dev 而不是 workers.dev：workers.dev 在国内的 DNS 被污染，直连打不开；pages.dev 实测国内能直连
+name = "swipeapply-api"
+pages_build_output_dir = "public"
+compatibility_date = "2026-10-01"
+
+[vars]
+PER_DEVICE_TOKENS = "200000"   # 每台电脑每天
+PER_IP_TOKENS = "400000"       # 每个 IP 每天
+GLOBAL_TOKENS = "3000000"      # 所有人合计每天：作者每天最多花这么多
+
+[[d1_databases]]
+binding = "DB"
+database_name = "swipeapply-usage"
+database_id = "d3608795-04d0-4ba5-88dd-16681a1cde19"  # 部署时 wrangler d1 create 后填上
+
+# Key 用 secret 存，不写在这里：
+#   npx wrangler pages secret put DEEPSEEK_KEY --project-name swipeapply-api
+#   npx wrangler pages secret put DASHSCOPE_KEY --project-name swipeapply-api

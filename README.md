@@ -2,7 +2,7 @@
 
 打开首页像刷 Tinder 一样刷新岗位：右滑进入投递工作台，AI 按 JD 用你的经历卡片定制简历，你用语音或文字让它改；投完记进「我的投递」，回来接着刷。**所有数据只存在你电脑上的 `data/` 文件夹里。**
 
-> **English** — SwipeApply is a local-first job-hunting workbench for campus recruiting in China. Swipe through job cards; AI matches roles to your experience, tailors a one-page A4 resume to each JD (every line traceable to your own materials, no invented numbers), and a browser extension autofills application forms (Feishu Hire, Moka, Beisen). Everything runs on your own machine — no server, your data stays in `data/`. Bring your own LLM keys (DeepSeek / Qwen or any OpenAI-compatible API).
+> **English** — SwipeApply is a local-first job-hunting workbench for campus recruiting in China. Swipe through job cards; AI matches roles to your experience, tailors a one-page A4 resume to each JD (every line traceable to your own materials, no invented numbers), and a browser extension autofills application forms (Feishu Hire, Moka, Beisen). Everything runs on your own machine — no server, your data stays in `data/`. Works out of the box with a free daily AI quota (requests are anonymized locally and relayed through the author's Cloudflare proxy, which stores no content), or bring your own LLM keys (DeepSeek / Qwen or any OpenAI-compatible API) to connect directly.
 
 <p align="center">
   <img src="docs/screenshots/feed.png" width="49%" alt="岗位流：像刷卡片一样看岗位，AI 按 JD 给出匹配分、匹配点和差距" />
@@ -24,10 +24,16 @@
 2. 双击启动：
    - **Windows**：`启动 SwipeApply.bat`
    - **Mac**：`启动 SwipeApply（Mac）.command`。第一次如果提示「无法验证开发者」：右键点它 →「打开」→ 再点「打开」
-3. 第一次会自动下载 Node.js 和依赖（都放在这个文件夹里，不装到系统，国内镜像，大约 5–10 分钟），然后弹出一个文本文件让你填 **两个 API Key**，保存后自动打开浏览器
+3. 第一次会自动下载 Node.js 和依赖（都放在这个文件夹里，不装到系统，国内镜像，大约 5–10 分钟），然后自动打开浏览器。**不用填任何 Key，AI 功能直接能用**（每天有免费额度，见下面）
 4. 以后每次用，再双击一下就行。那个黑色命令行窗口别关，关了 SwipeApply 就停了
 
-**两个 Key 怎么申请**（各几分钟，充几块钱够用一整个求职季）：
+**免费额度**：不填 Key 时，AI 请求经作者部署的中转（[`proxy/`](proxy)，Cloudflare）用作者的 Key，每台电脑每天约 20 万 token（大概够生成、修改 3~5 份简历加刷岗位的 AI 分析），北京时间 0 点重置。你需要知道的：
+
+- 发给 AI 的内容会经过这台中转服务器。内容在你电脑上先脱敏（姓名、电话等替换成占位符）才发出，中转只统计每天的用量，**不保存内容**，代码都在 [`proxy/`](proxy) 里可以检查
+- 用的人多时可能当天额度提前用完；作者也可能随时调整或停止免费额度
+- 不想经过中转、或者想不受限制地用：填自己的 Key（下表），就直接连 DeepSeek / 千问
+
+**想用自己的 Key**：打开 SwipeApply 文件夹里的 `.env.local`，填上下面两行，重启 SwipeApply（各几分钟，充几块钱够用一整个求职季）：
 
 | 填在哪 | 是什么 | 去哪申请 |
 | --- | --- | --- |

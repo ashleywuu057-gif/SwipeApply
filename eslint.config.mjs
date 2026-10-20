@@ -9,6 +9,7 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    "proxy/**", // Cloudflare Pages Functions，单独部署
     "out/**",
     "build/**",
     "next-env.d.ts",

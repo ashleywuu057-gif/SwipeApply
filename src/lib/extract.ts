@@ -1,4 +1,5 @@
 import "server-only";
+import "./free-proxy"; // 没填自己的 Key 时走免费额度（必须在读 LLM_* 配置之前）
 import type { CardType, Category, DraftCard, ExperienceCard } from "./types";
 import { CARD_TYPES, CATEGORIES } from "./types";
 import { newId } from "./store";
@@ -49,6 +50,14 @@ export async function postJson(url: string, apiKey: string, host: string, body: 
         if (!last && RETRY_STATUS.has(res.status)) {
           await sleep(attempt * 2000);
           continue;
+        }
+        // 免费额度用完（中转返回 402）：直接显示中转给的那句话
+        if (res.status === 402) {
+          let msg = "";
+          try {
+            msg = JSON.parse(text)?.error?.message ?? "";
+          } catch {}
+          throw new Error(msg || "今天的免费额度用完了，明天再来，或者在 .env.local 里填自己的 Key");
         }
         throw new Error(`模型调用失败 ${res.status}: ${text}`);
       }
