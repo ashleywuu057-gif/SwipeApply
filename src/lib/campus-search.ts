@@ -33,6 +33,47 @@ async function feishuTarget(url: string): Promise<{ origin: string; path: string
   return { origin: m[1], path };
 }
 
+/** 飞书招聘的接口要先拿 csrf token（和在官网上点开页面一样，不需要登录） */
+async function feishuSession(origin: string, path: string) {
+  const headers: Record<string, string> = { "User-Agent": UA, "Content-Type": "application/json", "website-path": path };
+  const tr = await fetch(`${origin}/api/v1/csrf/token`, { method: "POST", headers, body: JSON.stringify({ portal_entrance: 1 }), signal: AbortSignal.timeout(10000) });
+  const cookies = tr.headers.getSetCookie().map((c) => c.split(";")[0]);
+  const token = decodeURIComponent(cookies.find((c) => c.startsWith("atsx-csrf-token="))?.split("=")[1] ?? "");
+  return { ...headers, "x-csrf-token": token, Cookie: cookies.join("; ") };
+}
+
+export interface FeishuJd {
+  title: string;
+  text: string; // 岗位职责 + 任职要求，原文
+  recruitType: string; // 例如「校招 / 正式」「实习」
+  publishedAt?: string; // YYYY-MM-DD
+  online: boolean; // 官网上还挂着
+}
+
+/**
+ * 飞书招聘岗位详情页（xxx.jobs.feishu.cn/<站点>/position/<岗位号>）直接从官网的公开接口拿 JD：
+ * 和打开详情页时页面自己调的是同一个接口，返回结构化的职责和要求，零点几秒，不用开浏览器、不用模型挑原文。
+ * 不是飞书详情页、或者接口没返回内容时返回 null，调用方照常走网页 / 浏览器 / 联网搜索。
+ */
+export async function feishuJd(url: string): Promise<FeishuJd | null> {
+  const m = url.match(/^(https?:\/\/(?:[a-z0-9-]+\.jobs\.feishu\.cn|jobs\.bytedance\.com))\/([a-z0-9_-]+)\/position\/(\d{10,})/i);
+  if (!m) return null;
+  const [, origin, path, id] = m;
+  const headers = await feishuSession(origin, path);
+  const res = await fetch(`${origin}/api/v1/job/posts/${id}?portal_type=6&with_recommend=false`, { headers, signal: AbortSignal.timeout(15000) });
+  if (!res.ok) return null;
+  const p = (await res.json().catch(() => null))?.data?.job_post_detail as
+    | { title?: string; description?: string; requirement?: string; recruit_type?: { name?: string; parent?: { name?: string } }; publish_time?: number; channel_online_status?: number }
+    | undefined;
+  const desc = (p?.description ?? "").trim();
+  const req = (p?.requirement ?? "").trim();
+  if (!p || (!desc && !req)) return null;
+  const text = [desc && `岗位职责：\n${desc}`, req && `任职要求：\n${req}`].filter(Boolean).join("\n\n");
+  const rt = [p.recruit_type?.parent?.name, p.recruit_type?.name].filter(Boolean).join(" / ");
+  const publishedAt = p.publish_time ? new Date(p.publish_time).toISOString().slice(0, 10) : undefined;
+  return { title: p.title ?? "", text: text.slice(0, 6000), recruitType: rt, publishedAt, online: p.channel_online_status !== 0 };
+}
+
 /** 在飞书招聘的官网里按关键词搜校招正式岗位（不要实习、社招） */
 export async function feishuJobs(siteUrl: string, keywords: string[]): Promise<CampusJob[]> {
   const t = await feishuTarget(siteUrl);

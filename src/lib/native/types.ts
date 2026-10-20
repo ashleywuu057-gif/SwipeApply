@@ -106,7 +106,7 @@ export interface JdInfo {
   jobId: string;
   text: string; // 岗位职责和要求
   status: "ok" | "empty" | "failed" | "searching";
-  by: "网页" | "模型整理" | "浏览器" | "搜索" | "剪藏" | "手动" | "示例";
+  by: "飞书接口" | "网页" | "模型整理" | "浏览器" | "搜索" | "剪藏" | "手动" | "示例";
   url?: string; // JD 实际来自哪个网页
   sourceTitle?: string;
   error?: string; // 没找到时，每一步试了什么

@@ -1,5 +1,6 @@
 import "server-only";
 import { llmConfig } from "../extract";
+import { feishuJd } from "../campus-search";
 import { fetchPage, normForQuote } from "../research/fetch-page";
 import { classifySource, searchConfig, webSearch, type SearchHit } from "../research/search";
 import type { JobPosting } from "../tracker-types";
@@ -19,7 +20,7 @@ import type { BriefRef, CompanyBrief, JdInfo } from "./types";
  * 每一步都只从网页原文里挑句子，挑完核对是否都在原文里，并且要确认是这家公司的这个岗位。
  * 都不行的话，可以在浏览器里打开岗位页，点书签栏的「剪藏 JD」一键带回来。
  */
-const JD_VERSION = 2; // 抓取方式升级后，旧的失败记录重新试
+const JD_VERSION = 3; // 抓取方式升级后，旧的失败记录重新试（3：飞书岗位直接走官网接口）
 
 export async function ensureJd(job: JobPosting, opts: { force?: boolean } = {}): Promise<JdInfo> {
   const cached = await readJd(job.id);
@@ -45,6 +46,18 @@ export async function ensureJd(job: JobPosting, opts: { force?: boolean } = {}):
 
   // 岗位详情页（jdUrl，联网搜岗位时记下的）优先，其次是网申链接
   const links = [...new Set([(job as JobPosting & { jdUrl?: string }).jdUrl, job.link].filter((x): x is string => Boolean(x)))];
+
+  // 0. 飞书招聘的岗位详情页：直接从官网公开接口拿结构化的职责和要求（零点几秒，不开浏览器、不用模型挑）
+  for (const link of links) {
+    const fs = await feishuJd(link).catch((e: Error) => (notes.push(`飞书接口没取到（${e.message}）`), null));
+    if (!fs) continue;
+    const warn = [
+      !fs.online && "飞书显示这个岗位已经下线了，投之前去官网确认一下",
+      fs.publishedAt && fs.publishedAt.slice(0, 4) < String(new Date().getFullYear() - 1) && `发布于 ${fs.publishedAt}，可能是往年的岗位`,
+    ].filter(Boolean).join("；");
+    return done({ text: fs.text, warn: warn || undefined }, "飞书接口", link, fs.title);
+  }
+
   for (const link of links) {
     const label = link === job.link ? "网申链接" : "岗位详情页";
     // 1. 直接下载
