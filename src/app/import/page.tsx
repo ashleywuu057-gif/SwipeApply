@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import type { Assignment, CardRef, CardType, Category, DraftCard, ExperienceCard, Segment, SourceDoc } from "@/lib/types";
 import { CARD_TYPES, CATEGORIES, CATEGORY_HINT } from "@/lib/types";
 import type { AutoRules } from "@/lib/types";
-import type { Profile } from "@/lib/native/types";
 
 const RULE_LABELS: [keyof AutoRules, string, string][] = [
   ["person", "人名", "带称呼、有上下文的人名，@某人，英文名"],
@@ -34,7 +33,7 @@ type PreviewItem = {
 };
 type EditableDraft = DraftCard & { include: boolean; merge: boolean };
 
-const STEPS = ["上传资料", "隐私检查", "分类与归属", "确认简历抬头"];
+const STEPS = ["上传资料", "隐私检查", "分类与归属"];
 const SELECT = "rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm disabled:text-slate-400";
 
 export default function ImportPage() {
@@ -64,10 +63,6 @@ export default function ImportPage() {
   const [drafts, setDrafts] = useState<EditableDraft[]>([]);
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [cards, setCards] = useState<ExperienceCard[]>([]);
-
-  // step 4：从简历里读出的抬头，让用户确认
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [filled, setFilled] = useState<string[]>([]);
 
   useEffect(() => {
     fetch("/api/sources").then((r) => r.json()).then((d) => setExisting(d.sources));
@@ -166,7 +161,7 @@ export default function ImportPage() {
 
   async function commit() {
     setBusy("保存中…");
-    const d = await (
+    await (
       await fetch("/api/commit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -174,17 +169,8 @@ export default function ImportPage() {
       })
     ).json();
     setBusy("");
-    // 从简历里读出了抬头（姓名、电话…）：让用户看一眼再开始；没读出来就直接走
-    if (d.filled?.length) {
-      setProfile(d.profile);
-      setFilled(d.filled);
-      setStep(4);
-    } else done();
-  }
-
-  async function saveProfile() {
-    setBusy("保存中…");
-    await fetch("/api/native/memory", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ op: "profile", profile }) });
+    // 简历抬头（姓名、电话、教育经历…）在保存时已经自动读出来存好了，不再让用户手动确认（用户要求）；
+    // 读不准的以后在简历页点抬头改
     done();
   }
 
@@ -440,56 +426,6 @@ export default function ImportPage() {
                 </pre>
               </div>
             ))}
-          </div>
-        </section>
-      )}
-
-      {step === 4 && profile && (
-        <section className="panel mt-6 p-6">
-          <h2 className="text-lg font-semibold">确认简历抬头</h2>
-          <p className="mt-1 text-sm text-slate-500">
-            从你的简历里读出了这些（只在你电脑上读，没有发给 AI），每份定制简历的抬头都用它。看一眼，不对的直接改。
-          </p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {(
-              [
-                ["name", "姓名"],
-                ["phone", "电话"],
-                ["email", "邮箱"],
-              ] as const
-            ).map(([k, label]) => (
-              <label key={k} className="block">
-                <span className="label">
-                  {label}
-                  {filled.includes(k) && <span className="ml-1 text-emerald-600">· 从简历读出</span>}
-                </span>
-                <input className="input" value={profile[k]} onChange={(e) => setProfile({ ...profile, [k]: e.target.value })} />
-              </label>
-            ))}
-          </div>
-          {(
-            [
-              ["education", "教育经历", "每段一行「学校 专业 起止时间」，下面几行是课程、GPA、奖项"],
-              ["extra", "工作技能&其他", "第一行语言能力，第二行数分/办公软件/AI，其他的往下写"],
-            ] as const
-          ).map(([k, label, hint]) => (
-            <label key={k} className="mt-4 block">
-              <span className="label">
-                {label}
-                {filled.includes(k) && <span className="ml-1 text-emerald-600">· 从简历读出</span>}
-                <span className="ml-2 font-normal text-slate-400">{hint}</span>
-              </span>
-              <textarea className="input min-h-28 font-mono text-xs leading-5" value={profile[k]} onChange={(e) => setProfile({ ...profile, [k]: e.target.value })} />
-            </label>
-          ))}
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <button className="btn-primary" onClick={saveProfile} disabled={Boolean(busy)}>
-              保存，开始用 →
-            </button>
-            <button className="btn-ghost" onClick={done}>
-              先跳过
-            </button>
-            <span className="text-xs text-slate-400">🔒 抬头只存在你电脑上，以后在简历页点抬头也能改</span>
           </div>
         </section>
       )}
