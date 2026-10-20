@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* 矮屏：浏览器里能看到的高度不到 820px（例如 13 寸 16:10 笔记本 150% 缩放只剩约 667px）。
+   用 short: 前缀收紧间距、收起次要信息，让主要操作不用滚动就能看到；大屏不受影响 */
+@custom-variant short (@media (max-height: 820px));
+/* 很矮（不到 640px，例如 14 寸 1080p 150% 缩放）：再收一档 */
+@custom-variant tiny (@media (max-height: 640px));
+
 @theme {
   --color-accent: #111827;
   --color-accent-soft: #f3f4f6;

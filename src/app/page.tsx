@@ -216,8 +216,8 @@ export default function FeedPage() {
 
   return (
     <div className="mx-auto flex max-w-xl flex-col">
-      <header className="flex flex-col items-center pt-4 text-center sm:pt-8">
-        <h1 className="animate-fade-up text-[40px] font-normal leading-[1.05] tracking-tight text-gray-900 min-[400px]:text-[44px] sm:text-6xl">Hi, {feed.nickname || "你好"}</h1>
+      <header className="flex flex-col items-center pt-4 text-center sm:pt-8 short:pt-0!">
+        <h1 className="animate-fade-up text-[40px] font-normal leading-[1.05] tracking-tight text-gray-900 min-[400px]:text-[44px] sm:text-6xl short:text-4xl! tiny:text-3xl!">Hi, {feed.nickname || "你好"}</h1>
         <div className="animate-fade-up mt-2 flex items-center justify-center gap-2 text-sm text-gray-500 [animation-delay:100ms]">
           <span className="mr-1">
             {today.getMonth() + 1} 月 {today.getDate()} 日 · 周{WEEK[today.getDay()]}
@@ -233,7 +233,7 @@ export default function FeedPage() {
 
       {/* 今天优先的方向：卡片上方一行小字（今天的投递进度在「投递」按钮的圆环上） */}
       {!asking && feed.focus && (
-        <p className="animate-fade-up mt-6 flex items-center justify-center text-xs text-gray-600 [animation-delay:340ms]">
+        <p className="animate-fade-up mt-6 flex items-center justify-center text-xs text-gray-600 [animation-delay:340ms] short:mt-3!">
           <span
             className="min-w-0 truncate"
             title={feed.autoFocus ? `${feed.autoFocus.by === "AI" ? "AI 读了你的经历" : "按你的经历"}，先推「${[...feed.autoFocus.directions, ...feed.autoFocus.sectors].join("、")}」的岗位${feed.autoFocus.why ? `（${feed.autoFocus.why}）` : ""}。想换方向，直接在下面说一句。` : undefined}
@@ -270,7 +270,7 @@ export default function FeedPage() {
       )}
 
       {/* 卡片堆 */}
-      <div className={`animate-hero-rise relative h-[440px] [animation-delay:620ms] ${!asking && feed.focus ? "mt-3" : "mt-6"}`}>
+      <div className={`animate-hero-rise relative h-[440px] [animation-delay:620ms] short:h-[360px]! tiny:h-[300px]! ${!asking && feed.focus ? "mt-3 short:mt-2!" : "mt-6 short:mt-3!"}`}>
         {asking ? (
           <FocusAsk options={feed.focusOptions} initial={feed.focus} onDone={saveFocus} onCancel={editFocus ? () => setEditFocus(false) : undefined} />
         ) : !showDeck ? (
@@ -318,7 +318,7 @@ export default function FeedPage() {
       {/* 操作按钮 */}
       {showDeck && (
         // pb-9：投递按钮下面挂着「0/5 家」的标签（绝对定位，伸出按钮下方约 36px），给它留出位置，免得压住对话框
-        <div className="mt-7 flex items-center justify-center gap-4 pb-9">
+        <div className="mt-7 flex items-center justify-center gap-4 pb-9 short:mt-4!">
           <RoundBtn label="撤回" hint="Z" onClick={undo} disabled={!done.length} small>
             <Undo2 className="h-4 w-4" />
           </RoundBtn>
@@ -570,7 +570,7 @@ function useBriefChips(today: Date): Suggestion[] {
 function CardFront({ card, dim, llm }: { card: FeedCard; dim?: boolean; llm: boolean }) {
   const { job } = card;
   return (
-    <div className={`flex h-full flex-col p-7 ${dim ? "opacity-60" : ""}`}>
+    <div className={`flex h-full flex-col p-7 short:p-5! tiny:p-4! ${dim ? "opacity-60" : ""}`}>
       <div className="flex flex-wrap gap-1.5">
         {card.badges.map((b) => (
           <span key={b} className={`rounded-full px-2.5 py-0.5 text-xs ${b.startsWith("🔥") ? "bg-red-50 text-red-600" : b === "新" ? "bg-accent-soft text-accent" : "bg-slate-100 text-slate-600"}`}>
@@ -579,7 +579,7 @@ function CardFront({ card, dim, llm }: { card: FeedCard; dim?: boolean; llm: boo
         ))}
         {card.sample && <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-xs text-amber-700">示例</span>}
       </div>
-      <div className="mt-6 flex items-start justify-between gap-4">
+      <div className="mt-6 flex items-start justify-between gap-4 short:mt-3!">
         <div className="min-w-0">
           <p className="text-sm text-slate-500">{job.company}</p>
           <h2 className="mt-1 text-2xl font-semibold leading-snug">{job.title}</h2>
@@ -594,7 +594,7 @@ function CardFront({ card, dim, llm }: { card: FeedCard; dim?: boolean; llm: boo
           </span>
         </div>
       </div>
-      <dl className="mt-6 grid grid-cols-2 gap-y-3 text-sm">
+      <dl className="mt-6 grid grid-cols-2 gap-y-3 text-sm short:mt-3! short:gap-y-2! tiny:gap-y-1!">
         <Info k="地点" v={job.location || "未注明"} />
         <Info k="截止" v={job.deadline || "未注明"} />
         <Info k="批次" v={job.batch || "—"} />
@@ -615,7 +615,7 @@ function CardFront({ card, dim, llm }: { card: FeedCard; dim?: boolean; llm: boo
             {card.gaps.join(" · ")}
           </p>
         )}
-        <p className="mt-3 text-center text-xs text-slate-400">点一下翻面，看为什么推给你</p>
+        <p className="mt-3 text-center text-xs text-slate-400 tiny:hidden">点一下翻面，看为什么推给你</p>
       </div>
     </div>
   );
@@ -623,7 +623,7 @@ function CardFront({ card, dim, llm }: { card: FeedCard; dim?: boolean; llm: boo
 
 function CardBack({ card }: { card: FeedCard }) {
   return (
-    <div className="flex h-full flex-col overflow-hidden p-7">
+    <div className="flex h-full flex-col overflow-hidden p-7 short:p-5!">
       <p className="text-xs font-medium text-slate-500">为什么推给你</p>
       {card.reasons.length ? (
         <ul className="mt-3 space-y-3">

@@ -144,10 +144,10 @@ export default function ApplyPage() {
       <style>{`@media print { html, body { background: white !important; height: auto !important; overflow: visible !important; } ::-webkit-scrollbar { display: none !important; } body *:not(:has(#resume-print)):not(#resume-print):not(#resume-print *) { display: none !important; } body *:has(#resume-print) { margin: 0 !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; background: none !important; height: auto !important; max-height: none !important; overflow: visible !important; scrollbar-width: none !important; } #resume-print { display: block !important; width: 100%; } #resume-print .font-bold, #resume-print b { -webkit-text-stroke: 0.35px currentColor; } #resume-print[data-fit] { display: flex !important; flex-direction: column; justify-content: space-between; height: ${FIT_HEIGHT}; } @page { size: A4; margin: ${PAGE_MARGIN.y}mm ${PAGE_MARGIN.x}mm; } }`}</style>
       <motion.header initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="flex shrink-0 flex-wrap items-end justify-between gap-3">
         <div>
-          <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">
+          <Link href="/" className="text-sm text-slate-500 hover:text-slate-800 tiny:hidden">
             ← 回到岗位流
           </Link>
-          <h1 className="mt-2 text-xl font-semibold">
+          <h1 className="mt-2 text-xl font-semibold tiny:mt-0">
             {job.company} <span className="font-normal text-slate-500">· {job.title}</span>
           </h1>
           <p className="mt-1 text-xs text-slate-500">
@@ -403,8 +403,9 @@ function CompanyPanel({
     ) : null;
 
   return (
-    <aside className="space-y-4 lg:min-h-0 lg:overflow-y-auto">
-      <section className="panel p-5">
+    // 宽屏下左栏竖向排：最后一张卡片（JD）撑到底，和右栏底边对齐；内容多时照常在栏内滚动
+    <aside className="space-y-4 lg:flex lg:min-h-0 lg:flex-col lg:gap-4 lg:space-y-0 lg:overflow-y-auto">
+      <section className="panel p-5 lg:shrink-0">
         <div className="flex items-center justify-between gap-2">
           <h2 className="font-medium">公司速览</h2>
           <span className="text-xs text-slate-400">
@@ -472,7 +473,7 @@ function CompanyPanel({
         )}
       </section>
 
-      <section className="panel">
+      <section className="panel lg:flex-[1_0_auto]">
         <button className="flex w-full items-center justify-between px-5 py-3 text-left text-sm" onClick={() => setJdOpen(!jdOpen)}>
           <span className="font-medium">
             <span className="mr-1.5 inline-block w-3 text-slate-400">{jdOpen ? "▾" : "▸"}</span>JD
@@ -647,7 +648,7 @@ function ResumeEditor({
           </button>
         </div>
       </div>
-      <p className="mt-1 text-xs text-slate-400">和导出的 PDF 完全一样。点句子直接改；鼠标移到某段上，页边会出现 ↑↓ 调顺序、✕ 移到备选、删 一条；点抬头、教育或技能可以修改。</p>
+      <p className="mt-1 text-xs text-slate-400 short:hidden">和导出的 PDF 完全一样。点句子直接改；鼠标移到某段上，页边会出现 ↑↓ 调顺序、✕ 移到备选、删 一条；点抬头、教育或技能可以修改。</p>
       {children}
       {pending > 0 && <p className="mt-2 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-700">有 {pending} 句待核对（标红，鼠标停上去看原因和依据原句），请确认或修改。</p>}
 
@@ -1262,16 +1263,16 @@ function AgentBar({
           )}
           {/* AI 主动提示：不用展开对话也看得到 */}
           {tips.length > 0 && (
-            <div className="space-y-2 border-b border-slate-100 px-4 py-3 text-sm">
-              {tips.map((t) => (
-                <div key={t.key} className="flex flex-wrap items-center gap-2">
-                  <p className={`rounded-2xl rounded-bl-sm px-3 py-2 ${t.tone === "red" ? "bg-red-50 text-red-700" : "bg-slate-100 text-slate-700"}`}>{t.text}</p>
+            <div className="space-y-2 border-b border-slate-100 px-4 py-3 text-sm short:py-2">
+              {tips.map((t, i) => (
+                <div key={t.key} className={`flex flex-wrap items-center gap-2 short:flex-nowrap ${i > 0 && !open ? "short:hidden" : ""}`}>
+                  <p title={t.text} className={`rounded-2xl rounded-bl-sm px-3 py-2 short:min-w-0 short:flex-1 short:truncate short:py-1.5 ${t.tone === "red" ? "bg-red-50 text-red-700" : "bg-slate-100 text-slate-700"}`}>{t.text}</p>
                   {t.actions.map((a) => (
                     <button
                       key={a.label}
                       disabled={busy}
                       onClick={() => (a.say ? void send(a.say) : a.run?.())}
-                      className="rounded-full bg-gray-900 px-3 py-1 text-xs text-white hover:bg-gray-700 disabled:opacity-40"
+                      className="shrink-0 rounded-full bg-gray-900 px-3 py-1 text-xs text-white hover:bg-gray-700 disabled:opacity-40"
                     >
                       {a.label}
                     </button>
@@ -1281,11 +1282,11 @@ function AgentBar({
             </div>
           )}
           {lastQ && !busy && !open && (
-            <p className="px-4 pt-2 text-xs text-accent">
+            <p className="px-4 pt-2 text-xs text-accent short:hidden">
               💬 回答 AI 的问题：{lastQ}（你的回答会记进素材库，之后可以写进简历）
             </p>
           )}
-          <div className="flex flex-wrap gap-1.5 px-4 pt-2">
+          <div className={`flex flex-wrap gap-1.5 px-4 pt-2 ${open ? "" : "short:hidden"}`}>
             {QUICK.map((q) => (
               <button key={q} onClick={() => send(q)} disabled={busy || !llm} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600 hover:bg-accent-soft hover:text-accent disabled:opacity-40">
                 {q}
